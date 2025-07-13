@@ -1,0 +1,33 @@
+  <div id="map"></div>
+  <div id="music-controls">
+    <button id="play">▶️ Play</button>
+    <button id="pause">⏸ Pause</button>
+    <div id="track-info">No track playing</div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').fitWorld();
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    map.locate({setView: true, maxZoom: 16, watch: true});
+
+    // music controls
+    const playBtn = document.getElementById('play');
+    const pauseBtn = document.getElementById('pause');
+    const trackInfo = document.getElementById('track-info');
+
+    playBtn.onclick = () => {
+      trackInfo.textContent = 'Playing: Your Favorite Track';
+    };
+
+    pauseBtn.onclick = () => {
+      trackInfo.textContent = 'Paused';
+    };
+  </script>
+</body>
+</html>
